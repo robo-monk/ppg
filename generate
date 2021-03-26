@@ -1,0 +1,52 @@
+import os
+import numpy as np
+from rich import print
+import rglob
+
+
+pkg = 'yoing'
+def lsdir(folder):
+    return [ f.path for f in os.scandir(folder) if f.is_dir() ]
+
+
+def ls(path):
+    return rglob.rglob(path, "*")
+
+def add_file(file):
+    print(file)
+
+def walk(walk_path):
+    dirs = lsdir(walk_path)
+    files = []
+    if (dirs is not None):
+        files = files + [ walk(_dir) for _dir in dirs ]
+        
+    for file in ls(walk_path):
+        files.append(file)
+        
+    ary =  np.array(files)
+    return ary.flatten()
+    
+def pkgify(string):
+    return string.replace("$pkg", pkg)
+
+def read(file):
+    with open(file, "r") as f:
+        return f.read()
+        
+def generate(file, content):
+    with open(file, "w") as f:
+        f.write(content)
+        f.close()
+        
+os.mkdir(pkg)
+files = walk('$pkg')
+print(files)
+
+for file in files:
+    print(file)
+    file_name = pkgify(file)
+    print(f"generating {file_name}")
+    content = pkgify(read(file))
+    generate(file_name, content)
+
