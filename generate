@@ -31,8 +31,12 @@ def pkgify(string):
     return string.replace("$pkg", pkg)
 
 def read(file):
+    content = None
     with open(file, "r") as f:
-        return f.read()
+        content = f.read()
+        f.close()
+        
+    return content
         
 def generate(file, content):
     with open(file, "w") as f:
