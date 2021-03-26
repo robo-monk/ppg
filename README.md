@@ -12,5 +12,8 @@ git clone git@github.com:robo-monk/ppg.git && virtualenv ppg/.pp && source ppg/.
 
 ### Generate New
 ```
-python ppg/generate <pkg_name>
+cd ppg
+python generate <pkg_name>
+# crtl + c after its done
+cd .. && mv ppg/<pkg_name> <pkg_name>
 ```
