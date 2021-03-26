@@ -1,16 +1,26 @@
+#!/usr/bin/python3
+ 
 import os
 import numpy as np
 from rich import print
 import rglob
+import subprocess as sb
+import sys
 
+pkg = "untitled"
 
-pkg = 'yoing'
+if len(sys.argv) < 2:
+    print("[bold green] Specify package name: ")
+    pkg = input("- ")
+else:
+    pkg = sys.argv[1]
+
 def lsdir(folder):
     return [ f.path for f in os.scandir(folder) if f.is_dir() ]
 
 
 def ls(path):
-    return rglob.rglob(path, "*")
+    return rglob.rglob(path, "*") + rglob.rglob(path, ".*")
 
 def add_file(file):
     print(file)
@@ -28,7 +38,7 @@ def walk(walk_path):
     return ary.flatten()
     
 def pkgify(string):
-    return string.replace("$pkg", pkg)
+    return string.replace("-_pkg__art", pkg).replace("-_pkg__", pkg)
 
 def read(file):
     content = None
@@ -44,8 +54,11 @@ def generate(file, content):
         f.close()
         
 os.mkdir(pkg)
-files = walk('$pkg')
+os.mkdir(pkg + "/src")
+files = walk('-_pkg__')
 print(files)
+
+# sb.call(f"cd {pkg}", shell=True)
 
 for file in files:
     print(file)
@@ -53,4 +66,24 @@ for file in files:
     print(f"generating {file_name}")
     content = pkgify(read(file))
     generate(file_name, content)
+
+
+def r(command):
+    sb.call(command.strip().replace("\n", " && "), shell=True)
+
+os.chdir(pkg)
+
+pkgmngr = 'yarn'
+lock_file = "yarn.lock" if pkgmngr == 'yarn' else 'package-lock.json'
+
+if (pkgmngr == 'yarn'): r("yarn set version berry")
+
+r(f"""
+    virtualenv .{pkg}_env
+    mkdir src/icons docs src/styles
+    mv index.html docs/index.html
+    touch {lock_file} src/index.js 
+    {pkgmngr} install
+    source setup {pkgmngr}
+""")
 

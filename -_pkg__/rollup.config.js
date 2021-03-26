@@ -8,9 +8,9 @@ import json from '@rollup/plugin-json';
 import visualizer from 'rollup-plugin-visualizer'
 import pkg from './package.json';
 
-console.log("[ BUNDLING ] @ ", process.env["LECTOR_ENV"])
+console.log("[ BUNDLING ] @ ", process.env["-_pkg___ENV"])
 
-const env = process.env["LECTOR_ENV"]
+const env = process.env["-_pkg___ENV"]
 const prod = (env=='production' || env == 'prod')
 
 function ifProd(plug, params){
@@ -23,7 +23,7 @@ const plugs = [
   json(),
   ifProd(visualizer,{
     filename: "docs/stats.html",
-    title: "LectorJS Visualised",
+    title: "-_pkg__ Visualised",
     sourcemap: false
   })
 ]
@@ -35,12 +35,12 @@ export default [
     input: 'src/index.js',
     //external: ['tippy', 'mousetrap', 'animejs' ],
     output: [{
-      name: 'lector',
+      name: '-_pkg__',
       file: pkg.browser,
       format: 'umd'
     }, {
-      name: 'lector',
-      file: "docs/scripts/lectorjs.umd.js",
+      name: '-_pkg__',
+      file: "docs/scripts/-_pkg__.umd.js",
       format: 'umd'
     }],
     plugins: [
@@ -51,7 +51,7 @@ export default [
   },
   {
     input: 'src/index.js',
-    external: [ 'ms', 'tippy', 'mousetrap', 'animejs' ],
+    external: [ 'ms' ],
     output: [
       { file: pkg.main, format: 'cjs' },
       { file: pkg.module, format: 'es' }

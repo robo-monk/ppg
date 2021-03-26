@@ -1,24 +1,21 @@
 {
-    "name": "lectorjs",
-    "version": "0.5.9",
-    "description": "Read like you're on aderall",
+    "name": "-_pkg__",
+    "version": "",
+    "description": "-_pkg__ is awesome",
     "license": "MIT",
     "repository": {
         "type": "git",
         "url": "git://github.com/robo-monk/lector.git"
     },
     "source": "src/index.js",
-    "main": "dist/lector.cjs.js",
-    "module": "dist/lector.esm.js",
-    "browser": "dist/lector.umd.js",
+    "main": "dist/-_pkg__.cjs.js",
+    "module": "dist/-_pkg__.esm.js",
+    "browser": "dist/-_pkg__.umd.js",
     "files": [
         "dist/"
     ],
     "keywords": [
-        "lector",
-        "npm",
-        "package",
-        "fready"
+        "-_pkg__"
     ],
     "devDependencies": {
         "@babel/core": "^7.12.3",
@@ -40,32 +37,16 @@
         "rollup-plugin-sizes": "^1.0.3",
         "rollup-plugin-terser": "^7.0.2",
         "rollup-plugin-visualizer": "^4.2.0",
-        "style-loader": "^2.0.0",
-        "tailwindcss": "^1.9.6",
-        "webpack": "^5.11.0",
-        "webpack-cli": "^4.2.0"
+        "style-loader": "^2.0.0"
     },
     "scripts": {
         "build": "rollup -c",
-        "pretest": "yarn build",
-        "test": "jest",
-        "test:watch": "jest --watchAll",
         "dev-style": "nodemon -w 'src/styles/**' -e css,scss --exec python3 sass",
         "dev": "nodemon -w 'src/' -e css,scss,js,svg --exec python3 watchtower",
         "dev-rollup": "rollup -c -w",
-        "lint": "yarn run eslint src",
-        "watch": "watchify docs/demo.js -t babelify -o docs/bundle.js -v"
+        "lint": "yarn run eslint src"
     },
     "dependencies": {
-        "animejs": "^3.2.1",
-        "compromise": "^13.7.0",
-        "mousetrap": "^1.6.5",
-        "pragmajs": "latest"
-    },
-    "jest": {
-        "setupFiles": [
-            "<rootDir>/tests/test_env.js"
-        ]
     },
     "bugs": {
         "url": "https://github.com/robo-monk/lector/issues"
@@ -75,5 +56,5 @@
         "doc": "docs",
         "test": "test"
     },
-    "author": "robomonk"
+    "author": "daddy"
 }
