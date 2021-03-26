@@ -7,7 +7,7 @@ pragma package generator
 
 ### Installation
 ```
-git clone git@github.com:robo-monk/ppg.git && source pp/pp/bin/activate && pip install -r .requirements.txt
+git clone git@github.com:robo-monk/ppg.git && source ppg/pp/bin/activate && pip install -r ppg/.requirements.txt
 ```
 
 ### Generate New
